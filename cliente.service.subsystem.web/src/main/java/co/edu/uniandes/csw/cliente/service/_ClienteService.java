@@ -20,9 +20,14 @@ public abstract class _ClienteService {
 	protected IClienteLogicService clienteLogicService;
 	
 	@POST
-	public ClienteDTO createCliente(ClienteDTO cliente){
-		return clienteLogicService.createCliente(cliente);
-	}
+	public ClienteDTO createCliente(ClienteDTO cliente) throws Exception
+        {
+            ClienteDTO clienteX = clienteLogicService.createCliente(cliente);
+            if(clienteX== null)
+                throw new Exception ("Por Perra");
+            else
+                return clienteX;
+        }
 	
 	@DELETE
 	@Path("{id}")
